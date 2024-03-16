@@ -3,6 +3,7 @@ package com.nita.home.controller;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -15,13 +16,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.nita.home.dto.AccountDto;
-import com.nita.home.service.AccountService;
+import com.nita.home.service.AccountServiceV1;
 
 @Controller
-@RequestMapping("/api/account")
-public class AccountController {
+@RequestMapping("/api/v1/account")
+public class AccountControllerV1 {
     @Autowired
-    AccountService accountService;
+    @Qualifier("v1")
+    AccountServiceV1 accountService;
 
     @PostMapping("/create")
     public ResponseEntity<AccountDto> addAccount(@RequestBody AccountDto accountDto) {

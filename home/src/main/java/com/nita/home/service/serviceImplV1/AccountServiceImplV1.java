@@ -1,16 +1,18 @@
-package com.nita.home.service.serviceImpl;
+package com.nita.home.service.serviceImplV1;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.nita.home.dto.AccountDto;
 import com.nita.home.entity.Account;
 import com.nita.home.mapper.AccountMapping;
 import com.nita.home.repository.AccountRepository;
-import com.nita.home.service.AccountService;
+import com.nita.home.service.AccountServiceV1;
 
 @Service
-public class AccountServiceImpl implements AccountService{
+@Qualifier("v1")
+public class AccountServiceImplV1 implements AccountServiceV1{
     
     @Autowired
     private AccountRepository accountRepository;
