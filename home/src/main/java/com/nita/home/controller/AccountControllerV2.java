@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.nita.home.dto.AccountDto;
+import com.nita.home.dto.AccountResponseDto;
 import com.nita.home.service.AccountServiceV2;
 
 @RestController
@@ -32,5 +33,11 @@ public class AccountControllerV2 {
     @GetMapping("/filter")
     public ResponseEntity<List<AccountDto>> filterByAccountHolder(@RequestParam(defaultValue = "") String accountHolder) {
         return new ResponseEntity<>(accountServiceV2.findByAccountHolder(accountHolder), HttpStatus.OK);
+    }
+
+    @GetMapping("/all")
+    public ResponseEntity<AccountResponseDto> findAll(@RequestParam(defaultValue = "0") int pageNumber,
+                                                    @RequestParam(defaultValue = "5") int pageSize) {
+        return new ResponseEntity<>(accountServiceV2.findAll(pageNumber, pageSize), HttpStatus.OK);
     }
 }
