@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.nita.home.dto.AccountDto;
@@ -43,8 +44,15 @@ public class AccountServiceImplV2 extends AccountServiceImplV1 implements Accoun
     }
 
     @Override
-    public AccountResponseDto findAll(int page, int size) {
-        Pageable pageable = PageRequest.of(page, size);
+    public AccountResponseDto findAll(int page, int size, String sortBy, String sortDir) {
+        Sort sort = null;
+        if (sortDir.equalsIgnoreCase("asc")) {
+            sort = Sort.by(sortBy).ascending();
+        }
+        else {
+            sort = Sort.by(sortBy).descending();
+        }
+        Pageable pageable = PageRequest.of(page, size, sort);
         Page<Account> page2 = accountRepository.findAll(pageable);
         List<Account> list = page2.getContent();
         AccountResponseDto accountResponseDto = new AccountResponseDto();

@@ -8,5 +8,5 @@ import com.nita.home.dto.AccountResponseDto;
 public interface AccountServiceV2 extends AccountServiceV1{
     double checkBalance(Long id);
     List<AccountDto> findByAccountHolder(String accountHolder);
-    AccountResponseDto findAll(int page, int size);
+    AccountResponseDto findAll(int page, int size, String sortBy, String sortDir);
 }

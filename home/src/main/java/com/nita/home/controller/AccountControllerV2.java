@@ -37,7 +37,9 @@ public class AccountControllerV2 {
 
     @GetMapping("/all")
     public ResponseEntity<AccountResponseDto> findAll(@RequestParam(defaultValue = "0") int pageNumber,
-                                                    @RequestParam(defaultValue = "5") int pageSize) {
-        return new ResponseEntity<>(accountServiceV2.findAll(pageNumber, pageSize), HttpStatus.OK);
+                                                    @RequestParam(defaultValue = "5") int pageSize,
+                                                    @RequestParam(defaultValue = "accountHolder") String sortBy,
+                                                    @RequestParam(defaultValue = "asc") String sortDir) {
+        return new ResponseEntity<>(accountServiceV2.findAll(pageNumber, pageSize, sortBy, sortDir), HttpStatus.OK);
     }
 }
